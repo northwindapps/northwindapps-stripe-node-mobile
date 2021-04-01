@@ -62,12 +62,13 @@ server.post('/create_payment_intent', async (req, res) => {
         return sum + EMOJI_STORE[num];
     }
 
+    let customerId = req.body.customerId;
     try {
         const paymentIntent = await stripe.paymentIntents.create({
             amount: 2000,
             currency: 'jpy',
             payment_method_types: ['card'],
-            customer: 'cus_I6nUbZxaWqDylT'
+            customer: customerId
         });
 
         const clientSecret = paymentIntent.client_secret
